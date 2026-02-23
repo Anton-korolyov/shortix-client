@@ -124,7 +124,7 @@ export default function Flow() {
   const [likeBurst, setLikeBurst] =
     useState<{ [k: number]: boolean }>({});
 
-  const [canContinueMap, setCanContinueMap] =
+  const [, setCanContinueMap] =
     useState<{ [id: string]: boolean }>({});
 
   /* ===========================
