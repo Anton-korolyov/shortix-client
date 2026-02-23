@@ -63,7 +63,7 @@ export default function App() {
 
         if (data.exp * 1000 < Date.now()) return;
 
-        const conn = await startNotificationHub(data.nameid);
+        const conn = await startNotificationHub();
 
         if (!conn || !mounted) return;
 
