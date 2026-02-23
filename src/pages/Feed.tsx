@@ -8,7 +8,6 @@ import {
 import {
   Home,
   Search,
-  Plus,
   User
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -63,7 +62,7 @@ export default function Feed() {
   const [pausedMap, setPausedMap] =
     useState<{ [key: number]: boolean }>({});
 
-  const [likeBurst, setLikeBurst] =
+  const [likeBurst] =
     useState<{ [key: number]: boolean }>({});
 
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);

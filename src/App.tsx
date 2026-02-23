@@ -39,7 +39,7 @@ type Notification = {
 export default function App() {
 
   const navigate = useNavigate();
-  const { isAuth, username } = useAuth();
+  const { isAuth } = useAuth();
 
   const [toasts, setToasts] = useState<Notification[]>([]);
 
