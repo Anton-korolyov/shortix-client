@@ -20,14 +20,18 @@ export default function Home({ onAuthSuccess }: Props) {   // 🔥 ДОБАВИ�
   // SPLASH + AUTO LOGIN
   // ===========================
  useEffect(() => {
-
   if (isAuth) {
+    const redirect = localStorage.getItem("afterLoginRedirect");
+    if (redirect) {
+      // не мешаем редиректу после логина
+      setChecking(false);
+      return;
+    }
     nav("/feed", { replace: true });
   } else {
     setChecking(false);
   }
-
-}, [isAuth]);
+}, [isAuth, nav]);
 
   // ===========================
   // START STORY
