@@ -1,0 +1,165 @@
+.create-story {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: 390px;
+  max-width: 100vw;
+  background: black;
+  color: white;
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+/* TOP */
+
+.create-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.back-button {
+  position: absolute;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+/* VIDEO */
+
+.video-area {
+  position: absolute;
+  inset: 0;
+}
+
+.video-click-area {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1; /* 👈 ДОБАВЬ */
+}
+
+.video-placeholder {
+  font-size: 18px;
+  color: #aaa;
+}
+
+.video-preview-full {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.change-hint {
+  position: absolute;
+  bottom: 120px;
+  background: rgba(0,0,0,0.6);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+}
+
+/* CONTROLS */
+
+.controls {
+  position: absolute;
+  top: 70px;
+  left: 12px;
+  right: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.controls select,
+.controls input {
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* TAGS */
+
+.tag-list {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag-list span {
+  background: #6c5ce7;
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 12px;
+}
+
+/* BOTTOM */
+
+.create-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+}
+
+.upload-button {
+  width: 100%;
+  padding: 14px;
+  background: #6c5ce7;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  font-size: 16px;
+}
+.controls {
+  position: absolute;
+  top: 70px;
+  left: 12px;
+  right: 12px;
+  z-index: 50; /* 👈 ПОДНИМАЕМ */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+/* ============================
+   LAYER FIX
+============================ */
+
+.video-area {
+  z-index: 1;
+}
+
+.video-click-area {
+  z-index: 1;
+}
+
+.controls {
+  z-index: 50;
+}
+
+.create-bottom {
+  z-index: 50;
+}
+
+/* ensure buttons clickable */
+.controls input,
+.controls select,
+.controls button,
+.create-bottom button {
+  position: relative;
+  z-index: 60;
+  pointer-events: auto;
+}

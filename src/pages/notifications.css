@@ -1,0 +1,120 @@
+.notifications-page {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 390px;
+  max-width: 100vw;
+
+background: #202020;     /* 👈 чуть светлее чем black */
+  color: white;
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  /* мягкое отделение от фона */
+  box-shadow: 0 0 40px rgba(0,0,0,0.9);
+}
+.notifications-page {
+  border-radius: 30px;
+
+  /* рамка телефона */
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 0 40px rgba(0,0,0,0.8);
+
+  overflow: hidden;
+}
+.notifications-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(10px);
+  font-size: 18px;
+}
+
+.notifications-list {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.notification-item {
+  background: #1c1c1c;
+  padding: 12px;
+  border-radius: 12px;
+}
+
+.notification-item.unread {
+  background: #222;
+  border-left: 3px solid #7c5cff;
+}
+.notifications-page {
+  background:
+    linear-gradient(#000, #000) padding-box,
+    linear-gradient(180deg, #6c5ce7, #00e0ff) border-box;
+
+  border: 1px solid transparent;
+}
+.notifications-header {
+  position: relative;
+  padding: 14px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.notif-back {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.notif-back:hover {
+  color: white;
+}
+/* экран телефона = колонка */
+.notifications-page {
+  display: flex;
+  flex-direction: column;
+}
+
+/* шапка не сжимается */
+.notifications-header {
+  flex-shrink: 0;
+}
+
+/* 👇 САМ СКРОЛЛ */
+.notifications-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.notifications-list::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+.notifications-list {
+  scrollbar-width: none;   /* Firefox */
+  -ms-overflow-style: none; /* IE / Edge */
+}

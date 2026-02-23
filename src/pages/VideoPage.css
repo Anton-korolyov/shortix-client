@@ -1,0 +1,91 @@
+.video-page {
+  position: fixed;
+  inset: 0;
+  background: black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* КОНТЕЙНЕР КАК В FEED */
+.video-wrapper {
+  height: 100%;
+  aspect-ratio: 9 / 16;
+  background: black;
+  position: relative;
+}
+
+/* САМО ВИДЕО */
+.video-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* КНОПКА */
+.video-overlay {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.story-btn {
+  padding: 14px 32px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+
+  background: linear-gradient(135deg,#7b5cff,#00ffe7);
+  color: black;
+  font-weight: 600;
+}
+
+.video-wrapper {
+  height: 100%;
+  aspect-ratio: 9 / 16;
+  background: black;
+  position: relative;
+
+  border-radius: 22px;   /* ← ВОТ ЭТО */
+  overflow: hidden;      /* ← И ЭТО */
+}
+.top-actions-vid {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 30;
+
+  display: flex;
+  align-items: center;
+}
+
+/* кнопки справа налево */
+.top-actions-vid button {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+
+/* расстояние только между кнопками */
+.top-actions-vid button + button {
+  margin-left: 12px;
+}
+
+.top-actions-vid button:hover {
+  background: rgba(120,100,255,0.8);
+  transform: scale(1.08);
+}

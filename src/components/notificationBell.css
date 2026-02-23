@@ -1,0 +1,105 @@
+
+.bell-phone-left {
+  position: relative;
+}
+.badge {
+  position: absolute;
+  top: -6px;
+  right: -30px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  
+}
+.notif-popup {
+  position: absolute;
+  top: 44px;
+  left: 0;              /* 👈 ВАЖНО */
+  transform: none;      /* 👈 ВАЖНО */
+
+  width: 280px;
+  max-height: 360px;
+  overflow-y: auto;
+
+  background: #111;
+  border-radius: 14px;
+  padding: 10px;
+
+  box-shadow: 0 0 25px rgba(0,0,0,.9);
+  z-index: 99999;
+}
+
+
+/* ITEM */
+.notif-item {
+  background: #1e1e1e;
+  color: white;
+
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+
+  margin-bottom: 8px;
+}
+
+.notif-item.unread {
+  background: #252525;
+  border-left: 4px solid #7c5cff;
+}
+
+/* SEE ALL */
+.notif-seeall {
+  margin-top: 8px;
+  text-align: center;
+  color: #7c5cff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.notif-seeall:hover {
+  text-decoration: underline;
+}
+.lightning-wrap {
+  
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.lightning-wrap:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.lightning-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #ff3b3b;
+  color: white;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bell-phone-left {
+  position: fixed;
+
+  top: 8px;
+  left: 50%;
+  transform: translateX(-185px);
+
+  z-index: 9999;
+  pointer-events: auto;
+}

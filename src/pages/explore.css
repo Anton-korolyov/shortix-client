@@ -1,0 +1,294 @@
+/* ================= ROOT ================= */
+
+.explore-root {
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #111 0%, #000 60%);
+}
+
+/* ================= PHONE CONTAINER ================= */
+
+.explore-phone {
+  position: relative;
+  width: 390px;
+  height: 100dvh;
+  background: black;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border-radius: 24px;
+  box-shadow:
+    0 0 60px rgba(0,0,0,.9),
+    inset 0 0 0 1px rgba(255,255,255,0.05);
+
+  scrollbar-width: none;
+}
+
+.explore-phone::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================= HEADER (НЕ ТРОГАЕМ ЛОГИКУ) ================= */
+
+.explore-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  padding: 14px 0;
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 700;
+  color: white;
+
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(10px);
+}
+
+/* ================= SEARCH ================= */
+
+.explore-search {
+  position: relative;
+  padding: 10px 14px;
+}
+
+.search-icon {
+  position: absolute;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: rgba(255,255,255,0.6);
+  pointer-events: none;
+  font-size: 14px;
+}
+
+.explore-search input {
+  width: 100%;
+  padding: 12px 44px 12px 44px;
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  color: white;
+  font-size: 14px;
+  outline: none;
+
+  transition: all .25s ease;
+}
+
+.explore-search input:focus {
+  background: rgba(255,255,255,0.14);
+  border-color: #7b5cff;
+  box-shadow: 0 0 12px rgba(123,92,255,0.4);
+}
+
+.clear-search {
+  position: absolute;
+  right: 26px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.15);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.clear-search:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+/* ================= GRID ================= */
+
+
+
+/* ================= CARD ================= */
+
+.explore-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+
+  overflow: hidden;
+  cursor: pointer;
+
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 12px 28px rgba(0,0,0,0.6),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+
+  transition: transform .25s ease,
+              box-shadow .25s ease,
+              border-color .25s ease;
+}
+
+.explore-card video,
+.explore-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+
+  transform: scale(1.02);
+  transition: transform .4s ease, filter .3s ease;
+}
+
+/* нижний градиент */
+.explore-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0)
+  );
+  pointer-events: none;
+}
+
+/* лёгкое фиолетовое свечение */
+.explore-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    120% 80% at 50% 0%,
+    rgba(123,92,255,0.12),
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+/* hover эффект */
+.explore-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(123,92,255,0.4);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,0.7),
+    0 0 0 1px rgba(123,92,255,0.2) inset;
+}
+
+.explore-card:hover video,
+.explore-card:hover img {
+  transform: scale(1.08);
+  filter: saturate(1.1) contrast(1.05);
+}
+
+.explore-card:active {
+  transform: scale(0.97);
+}
+
+/* ================= USER TAG ================= */
+
+.explore-user {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  z-index: 2;
+
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+
+  padding: 6px 10px;
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.45);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  text-shadow: 0 1px 6px rgba(0,0,0,0.85);
+
+  max-width: calc(100% - 20px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* фиолетовая точка акцента */
+.explore-user::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  background: #7b5cff;
+  box-shadow: 0 0 8px rgba(123,92,255,0.8);
+  vertical-align: middle;
+}
+
+/* ================= LOAD MORE ================= */
+
+.load-more {
+  width: 85%;
+  margin: 20px auto 36px;
+  display: block;
+
+  background: linear-gradient(135deg,#7b5cff,#5b3df5);
+  color: white;
+
+  border: none;
+  border-radius: 24px;
+  padding: 14px;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: .25s ease;
+  box-shadow: 0 0 18px rgba(120,100,255,.6);
+}
+
+.load-more:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 26px rgba(120,100,255,.9);
+}
+
+/* ================= EMPTY ================= */
+
+.explore-empty {
+  color: #aaa;
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 15px;
+  opacity: .8;
+}
+
+/* ================= MOBILE FULL WIDTH ================= */
+
+
+
+.explore-grid {
+   display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:4px;
+  padding:6px;
+}
+
+.explore-card{
+  border:1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.03);
+}
+
+.back-btn-prof{
+  top: 17px;
+}
