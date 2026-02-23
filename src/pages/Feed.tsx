@@ -51,7 +51,7 @@ export default function Feed() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [showCreateSheet, setShowCreateSheet] = useState(false);
+  const [, setShowCreateSheet] = useState(false);
   const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSwipeHint, setShowSwipeHint] = useState(true);
