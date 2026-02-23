@@ -442,7 +442,16 @@ async function likeVideo(id: string) {
         >
           For You
         </button>
-
+         {/* LOGOUT */}
+          <button
+  className="logout-top"
+  onClick={() => {
+    logout();
+    navigate("/");
+  }}
+>
+  ⎋
+</button>
   {isAuth && (
   <button
     className={feedMode === "following" ? "active" : ""}
@@ -515,16 +524,7 @@ async function likeVideo(id: string) {
   )}
 
 </div>
-            {/* LOGOUT */}
-          <button
-  className="logout-top"
-  onClick={() => {
-    logout();
-    navigate("/");
-  }}
->
-  ⎋
-</button>
+   
 
             {pausedMap[i] && (
               <div className="play-overlay">
