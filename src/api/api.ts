@@ -1,5 +1,4 @@
-const API = "https://localhost:7247";
-
+const API = import.meta.env.VITE_API_URL;
 // ===========================
 // BASE REQUEST WITH REFRESH
 // ===========================
@@ -456,7 +455,7 @@ export async function getExplore(
   if (category) params.append("category", category);
 
   const res = await fetch(
-   `https://localhost:7247/api/feed/explore?${params.toString()}`
+  `${API}/api/feed/explore?${params.toString()}`
   );
 
   return await res.json();

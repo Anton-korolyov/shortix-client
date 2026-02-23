@@ -6,7 +6,7 @@ import "./explore.css";
 export default function Explore() {
 
   const nav = useNavigate();
-
+   const API = import.meta.env.VITE_API_URL;
   const [videos, setVideos] = useState<any[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
@@ -109,7 +109,7 @@ useEffect(() => {
               onClick={() => nav(`/video/${v.id}`)}
             >
               <video
-                src={`https://localhost:7247${v.url}`}
+                src={`${API}${v.url}`}
                 muted
                 playsInline
               />

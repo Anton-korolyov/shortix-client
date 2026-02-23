@@ -11,7 +11,7 @@ export default function FollowingPage() {
 
   const { username } = useParams();
   const nav = useNavigate();
-
+  const API = import.meta.env.VITE_API_URL;
   const [users, setUsers] = useState<UserItem[]>([]);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ return (
               className="follow-avatar"
               src={
                 u.avatarUrl
-                  ? `https://localhost:7247${u.avatarUrl}`
+                  ? `${API}${u.avatarUrl}`
                   : "/avatar.png"
               }
             />

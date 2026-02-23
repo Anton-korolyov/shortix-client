@@ -24,7 +24,7 @@ export default function VideoPage() {
   const { id } = useParams();
   const nav = useNavigate();
   const location = useLocation();
-
+  const API = import.meta.env.VITE_API_URL;
   // откуда пришли
   const from = location.state?.from;
 
@@ -114,7 +114,7 @@ async function onDelete() {
 
         {/* VIDEO */}
         <video
-          src={`https://localhost:7247${video.url}`}
+          src={`${API}${video.url}`}
           autoPlay
           loop
           muted

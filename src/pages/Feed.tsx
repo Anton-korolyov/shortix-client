@@ -45,7 +45,7 @@ type Video = {
 export default function Feed() {
  
   const navigate = useNavigate();
-
+  const API = import.meta.env.VITE_API_URL;
   const { isAuth , username,logout} = useAuth();
   const [initialLoading, setInitialLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
@@ -475,7 +475,7 @@ async function likeVideo(id: string) {
                 if (el)
                   videoRefs.current[i] = el;
               }}
-              src={`https://localhost:7247${v.url}`}
+              src={`${API}${v.url}`}
               loop
               playsInline
               onClick={() => toggle(i)}
@@ -545,7 +545,7 @@ async function likeVideo(id: string) {
                 className="user-avatar"
                 src={
                   v.avatarUrl
-                    ? `https://localhost:7247${v.avatarUrl}`
+                    ? `${API}${v.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"

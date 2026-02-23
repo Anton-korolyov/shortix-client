@@ -99,7 +99,7 @@ export default function Flow() {
 
   const { nodeId } = useParams();
   const navigate = useNavigate();
-
+  const API = import.meta.env.VITE_API_URL;
   const { isAuth, username } = useAuth();
 
   const [paused, setPaused] = useState(false);
@@ -577,7 +577,7 @@ export default function Flow() {
                 >
 
                   <video
-                    src={`https://localhost:7247${b.url}`}
+                    src={`${API}${b.url}`}
                     muted
                   />
 
@@ -618,7 +618,7 @@ export default function Flow() {
 
           <video
             className="flow-video"
-            src={`https://localhost:7247${v.url}`}
+            src={`${API}${v.url}`}
             loop
             playsInline
             autoPlay
@@ -635,7 +635,7 @@ export default function Flow() {
               className="flow-avatar"
               src={
                 v.avatarUrl
-                  ? `https://localhost:7247${v.avatarUrl}`
+                  ? `${API}${v.avatarUrl}`
                   : "/avatar.png"
               }
             />

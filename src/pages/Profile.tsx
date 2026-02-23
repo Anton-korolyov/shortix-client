@@ -33,7 +33,7 @@ type Paged<T> = {
 export default function Profile() {
   const { username } = useParams();
   const nav = useNavigate();
-
+  const API = import.meta.env.VITE_API_URL;
   const [videos, setVideos] = useState<Video[]>([]);
   const [profile, setProfile] = useState<ProfileInfo | null>(null);
 
@@ -157,7 +157,7 @@ export default function Profile() {
               <img
                 src={
                   profile?.avatarUrl
-                    ? `https://localhost:7247${profile.avatarUrl}`
+                    ? `${API}${profile.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"
@@ -232,7 +232,7 @@ export default function Profile() {
                 onClick={() => nav(`/video/${v.id}`, { state: { from: "profile" } })}
               >
                 <video
-                  src={`https://localhost:7247${v.previewUrl}`}
+                  src={`${API}${v.previewUrl}`}
                   muted
                   playsInline
                   preload="metadata"

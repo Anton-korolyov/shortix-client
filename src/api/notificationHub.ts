@@ -2,12 +2,14 @@ import * as signalR from "@microsoft/signalr";
 
 let connection: signalR.HubConnection | null = null;
 
+const API = import.meta.env.VITE_API_URL;
+
 export async function startNotificationHub() {
 
   if (connection) return connection;
 
   connection = new signalR.HubConnectionBuilder()
-    .withUrl("https://localhost:7247/hubs/notifications", {
+    .withUrl(`${API}/hubs/notifications`, {
       accessTokenFactory: () =>
         localStorage.getItem("accessToken") || ""
     })
