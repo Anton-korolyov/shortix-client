@@ -51,7 +51,7 @@ export default function Feed() {
   const [videos, setVideos] = useState<Video[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
-  const [, setShowCreateSheet] = useState(false);
+  const [showCreateSheet, setShowCreateSheet] = useState(false);
   const [selectedParentId, setSelectedParentId] = useState<string | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSwipeHint, setShowSwipeHint] = useState(true);
@@ -687,7 +687,7 @@ navigate(`/feed/flow/${v.id}`);
 
 
 
-{true && (
+{showCreateSheet && (
   <div
     className="sheet-overlay"
     onClick={() => setShowCreateSheet(false)}
