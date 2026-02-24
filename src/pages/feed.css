@@ -2,11 +2,12 @@
 
 .feed-root {
   width: 100vw;
-  bottom: 60px; /* FIX: было height: 100dvh; */
+  /* FIX: было height: 100dvh; */
   display: flex;
   justify-content: center;
   align-items: center;
   background: black;
+
 }
 
 /* ================= PHONE FRAME ================= */
@@ -50,7 +51,8 @@
 
   /* ✅ ВЛЕЗАЕТ ПОЛНОСТЬЮ: экран - tabs - bottom-nav - safe-area */
   height: calc(100dvh - 56px - 58px - env(safe-area-inset-bottom));
-
+  top: calc(20px + env(safe-area-inset-top));
+  bottom: calc(20px + env(safe-area-inset-bottom));
   scroll-snap-align: start;
   background: black;
   overflow: hidden;
