@@ -124,7 +124,7 @@ height: 100%;
   right: 14px;
 
   /* 🔥 тут поднимаем */
-  bottom: 200px;
+  bottom: 200px !important;
 
   z-index: 5;
 
