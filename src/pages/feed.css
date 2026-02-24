@@ -14,7 +14,7 @@
 .feed {
   position: relative;
   width: 390px;
-    height: calc(100vh - 70px) !important;
+    height: 100svh;
   background: black;
 
   overflow-y: auto;
@@ -30,7 +30,7 @@
 @media (max-width: 480px) {
   .feed {
     width: 100vw;
-      height: calc(100vh - 70px) !important;
+      height: 100svh;
     border-radius: 0;
   }
 }
