@@ -406,7 +406,7 @@ height: 100%;
 
 .bottom-nav {
   position: fixed;               /* FIX: было absolute */
-  bottom: 0;                     /* FIX */
+  bottom: 50px !important;                     /* FIX */
   left: 50%;
   transform: translateX(-50%);
 
