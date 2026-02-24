@@ -484,7 +484,7 @@ async function likeVideo(id: string) {
                 if (el)
                   videoRefs.current[i] = el;
               }}
-              src={`${API}${v.url}`}
+              src={`${v.url}`}
               loop
               playsInline
               onClick={() => toggle(i)}
