@@ -89,7 +89,7 @@ height: 100%;
 .user-left {
   position: absolute;
   left: 14px;
-  bottom: 140px;
+  bottom: 200px;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -125,8 +125,16 @@ height: 100%;
 .bottom-actions {
   position: absolute;
   right: 14px;
-bottom: 500px;
+
+  /* 🔥 тут поднимаем */
+  bottom: 140px;
+
   z-index: 5;
+
+  /* чтобы не было сюрпризов */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bottom-right {
