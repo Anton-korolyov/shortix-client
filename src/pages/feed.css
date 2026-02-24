@@ -514,7 +514,7 @@ height: 100%;
 .video-meta {
   position: absolute;
   left: 12px;
-  bottom: 60px;
+  bottom: 120px;
   max-width: 70%;
   color: white;
   z-index: 5;
@@ -535,6 +535,7 @@ height: 100%;
   gap: 6px;
   margin-top: 6px;
   color:#6444ed69;
+  bottom: 120;
 }
 
 /* SINGLE TAG */
