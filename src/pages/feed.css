@@ -14,7 +14,7 @@
 .feed {
   position: relative;
   width: 390px;
-  height: 100dvh;
+    height: calc(100vh - 70px) !important;
   background: black;
 
   overflow-y: auto;
@@ -30,7 +30,7 @@
 @media (max-width: 480px) {
   .feed {
     width: 100vw;
-    height: 100dvh;
+      height: calc(100vh - 70px) !important;
     border-radius: 0;
   }
 }
@@ -611,8 +611,4 @@
   }
 }
 
-.video-meta,
-.user-left,
-.bottom-actions {
-  margin-bottom: 70px;     /* как у тебя сейчас */
-}
+
