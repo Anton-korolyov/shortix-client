@@ -1,266 +1,644 @@
-/* ================= ROOT ================= */
-
-:root{
-  --nav-h: 58px;
-  --ui-gap: 16px;
-}
-
-*{
-  box-sizing: border-box;
-}
-
-body{
-  margin:0;
-  background:black;
-}
-
 /* ================= ROOT CENTER ================= */
 
-.feed-root{
-  width:100vw;
-  height:100dvh;
-  display:flex;
-  justify-content:center;
-  background:black;
+.feed-root {
+  width: 100vw;
+  min-height: 100svh; /* FIX: было height: 100dvh; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
 }
 
-/* ================= FEED ================= */
+/* ================= PHONE FRAME ================= */
 
-.feed{
-  position:relative;
-  width:390px;
-  height:100dvh;
-  overflow-y:auto;
-  overflow-x:hidden;
-  scroll-snap-type:y mandatory;
-  background:black;
-  padding-bottom:calc(var(--nav-h) + env(safe-area-inset-bottom));
+.feed {
+  position: relative;
+  width: 390px;
+  height: 100dvh; /* FIX: было 100svh */
+  background: black;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  border-radius: 22px;
+  box-shadow: 0 0 40px rgba(0,0,0,.8);
+
+  scroll-snap-type: y mandatory;
+  
 }
 
-@media(max-width:480px){
-  .feed{
-    width:100vw;
+@media (max-width: 480px) {
+  .feed {
+    width: 100vw;
+    height: 100dvh; /* FIX: было 100svh */
+    border-radius: 0;
   }
 }
 
-.feed::-webkit-scrollbar{
-  display:none;
+.feed::-webkit-scrollbar {
+  display: none;
 }
 
 /* ================= SLIDE ================= */
 
-.video-slide{
-  position:relative;
-  width:100%;
-  height:100%;
-  scroll-snap-align:start;
-  background:black;
+.video-slide {
+  position: relative;
+  width: 100%;
+   height: calc(100dvh - 58px); /* FIX: было 100dvh */
+  scroll-snap-align: start;
+  background: black;
+  overflow: hidden;
+
+}
+
+/* ================= GRADIENT ================= */
+
+.video-slide::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 180px;
+
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0)
+  );
+
+  pointer-events: none;
+  z-index: 2;
 }
 
 /* ================= VIDEO ================= */
 
-.feed-video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.feed-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+height: 100%;
+  object-fit: cover;
 }
 
-/* ================= GRADIENTS ================= */
+/* ================= USER LEFT ================= */
 
-.video-slide::after{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  height:180px;
-  background:linear-gradient(
-    to top,
-    rgba(0,0,0,.75),
-    rgba(0,0,0,0)
-  );
-  z-index:2;
-  pointer-events:none;
+.user-left {
+  position: absolute;
+  left: 14px;
+  bottom: 200px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  z-index: 5;
 }
 
-.video-slide::before{
-  content:"";
-  position:absolute;
-  left:0;
-  right:0;
-  top:0;
-  height:140px;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.75),
-    rgba(0,0,0,0)
-  );
-  z-index:2;
-  pointer-events:none;
+.user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  border: 2px solid white;
+  cursor: pointer;
 }
 
-/* ======================================================
-   FIXED OVERLAYS (как bottom-nav)
-====================================================== */
-
-/* USER */
-
-.user-left{
-  position:fixed;
-  left:14px;
-  bottom:calc(var(--nav-h) + var(--ui-gap));
-  display:flex;
-  gap:10px;
-  align-items:center;
-  color:white;
-  z-index:200;
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
-.user-avatar{
-  width:38px;
-  height:38px;
-  border-radius:50%;
-  object-fit:cover;
-  border:2px solid white;
+.user-left span {
+  font-size: 14px;
+  text-shadow:
+    0 2px 6px rgba(0,0,0,.9),
+    0 0 10px rgba(0,0,0,.6);
 }
 
-.username{
-  font-size:14px;
+/* ================= ACTIONS RIGHT ================= */
+
+.bottom-actions {
+  position: absolute;
+  right: 14px;
+
+  /* 🔥 тут поднимаем */
+  bottom: 200px;
+
+  z-index: 5;
+
+  /* чтобы не было сюрпризов */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* ACTIONS */
-
-.bottom-actions{
-  position:fixed;
-  right:14px;
-  bottom:calc(var(--nav-h) + var(--ui-gap));
-  z-index:200;
+.bottom-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  
 }
 
-.bottom-right{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  align-items:center;
+.bottom-right button {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,.6);
+  color: white;
+  font-size: 19px;
+
+  cursor: pointer;
+
+  transition: transform .2s ease,
+              background .2s ease,
+              box-shadow .2s ease;
 }
 
-.bottom-right button{
-  width:46px;
-  height:46px;
-  border-radius:50%;
-  border:none;
-  background:rgba(0,0,0,.6);
-  color:white;
-  font-size:18px;
+.bottom-right button:hover {
+  transform: scale(1.08);
+  background: rgba(255,255,255,.15);
 }
 
-.bottom-right span{
-  font-size:12px;
-  color:white;
+.bottom-right span {
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.8);
 }
 
-/* CATEGORY + TAGS */
+/* ================= CONTINUE BUTTON ================= */
 
-.video-meta{
-  position:fixed;
-  left:12px;
-  bottom:calc(var(--nav-h) + 80px);
-  color:white;
-  z-index:200;
-  max-width:70%;
+.continue-btn {
+  width: 48px;
+  height: 48px;
+  font-size: 18px;
+
+  background: linear-gradient(135deg,#7a5cff,#5b3df5);
+
+  box-shadow:
+    0 0 14px rgba(120,100,255,.9),
+    0 0 30px rgba(120,100,255,.6);
+
+  animation: continuePulse 1.5s infinite;
 }
 
-.video-category{
-  color:#a29bfe;
-  font-weight:600;
-  margin-bottom:6px;
-}
-
-.video-tags{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
+@keyframes continuePulse {
+  0% {
+    transform: rotate(180deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(180deg) scale(1);
+  }
 }
 
 /* ================= PLAY ICON ================= */
 
-.play-overlay{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:70px;
-  color:white;
-  pointer-events:none;
-  z-index:300;
-}
-
-/* ================= TABS ================= */
-
-.feed-tabs{
-  position:fixed;
-  top:14px;
-  left:50%;
-  transform:translateX(-50%);
-  display:flex;
-  gap:20px;
-  background:rgba(0,0,0,.5);
-  padding:6px 18px;
-  border-radius:20px;
-  z-index:300;
-}
-
-.feed-tabs button{
-  background:none;
-  border:none;
-  color:#aaa;
-  font-size:14px;
-}
-
-.feed-tabs button.active{
-  color:white;
+.play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 70px;
+  color: white;
+  pointer-events: none;
+  z-index: 20;
 }
 
 /* ================= LOGOUT ================= */
 
-.logout-top{
-  position:fixed;
-  top:14px;
-  right:14px;
-  width:44px;
-  height:44px;
-  border-radius:50%;
-  background:rgba(0,0,0,.6);
-  color:white;
-  border:none;
-  z-index:300;
+.logout-top {
+  position: fixed; /* FIX: было absolute */
+  top: 14px;
+  right: 14px;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(0,0,0,.6);
+  color: white;
+  font-size: 18px;
+
+  z-index: 20;
+
+  cursor: pointer;
+  transition: transform .2s ease,
+              background .2s ease;
 }
 
-/* ================= BOTTOM NAV ================= */
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:330px;
-  height:var(--nav-h);
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-  background:rgba(0,0,0,.4);
-  border-radius:36px;
-  z-index:300;
+.logout-top:hover {
+  transform: scale(1.08);
+  background: rgba(255,80,80,.45);
 }
 
-.bottom-nav button{
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-  border:none;
-  color:white;
+/* ================= CONTINUE TEXT ================= */
+
+.continue-btn + span {
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(130,100,255,0.8);
 }
+/* ================================
+   FEED TABS
+================================ */
+
+.feed-tabs {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 50;
+
+  display: flex;
+  gap: 24px;
+
+  background: rgba(0,0,0,0.45);
+  padding: 6px 18px;
+  border-radius: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.feed-tabs button {
+  background: none;
+  border: none;
+  color: #aaa;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feed-tabs button.active {
+  color: white;
+  position: relative;
+}
+
+.feed-tabs button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #7b5cff;
+  border-radius: 2px;
+}
+.skeleton {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    #1a1a1a 25%,
+    #2a2a2a 37%,
+    #1a1a1a 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.empty-feed {
+  height: 100vh;
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.empty-feed h2 {
+  color: white;
+}
+
+.empty-feed button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.sheet-overlay {
+  position: fixed;          /* 🔥 обратно fixed */
+  
+  /* ограничиваем ширину телефона */
+  left: 50%;
+  transform: translateX(-50%);
+  
+  width: 390px;             /* ширина телефона */
+  height: 100%;
+  
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  
+  display: flex;
+  align-items: flex-end;
+  z-index: 99999;
+}
+
+.sheet {
+  width: 100%;
+  background: #0f0f0f;
+  border-radius: 22px 22px 0 0;
+  padding: 20px;
+  animation: slideUp .25s ease;
+}
+
+.sheet h3 {
+  text-align: center;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.sheet-option {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 12px;
+  background: #1c1c1c;
+  border-radius: 14px;
+  border: none;
+  color: white;
+  font-size: 16px;
+}
+
+.sheet-option:active {
+  transform: scale(.97);
+}
+
+.sheet-cancel {
+  width: 100%;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #888;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+/* ============================
+   BOTTOM NAV (GLASS STYLE)
+============================ */
+
+.bottom-nav {
+  position: fixed;               /* FIX: было absolute */
+  bottom: 0;                     /* FIX */
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 330px;
+  height: 58px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: rgba(0,0,0,0.35);   /* легче */
+  backdrop-filter: blur(8px);
+
+  border-radius: 36px;
+
+  /* FIX: safe-area уходит внутрь, а не двигает бар вверх */
+  padding-bottom: env(safe-area-inset-bottom);
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.6);
+
+  z-index: 100;
+}
+
+/* ============================
+   NAV BUTTONS
+============================ */
+
+.bottom-nav button {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.8);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition: 
+    transform .2s ease,
+    background .2s ease,
+    color .2s ease,
+    box-shadow .2s ease;
+}
+
+.bottom-nav button:hover {
+  transform: scale(1.08);
+  background: rgba(255,255,255,0.14);
+  color: white;
+}
+
+/* ============================
+   ACTIVE
+============================ */
+
+.bottom-nav button.active {
+  background: rgba(120,100,255,0.22);
+  color: #a79cff;
+
+  box-shadow:
+    0 0 10px rgba(120,100,255,.6);
+}
+
+/* ============================
+   PLUS BUTTON (CENTER)
+============================ */
+
+.bottom-nav button.plus {
+  width: 48px;
+  height: 48px;
+
+  background: linear-gradient(
+    135deg,
+    #7b5cff,
+    #5b3df5
+  );
+
+  color: white;
+
+  box-shadow:
+    0 0 12px rgba(120,100,255,.7),
+    0 0 20px rgba(120,100,255,.4);
+}
+
+.bottom-nav button.plus:hover {
+  transform: scale(1.12);
+}
+
+/* ============================
+   MOBILE FULL WIDTH
+============================ */
+
+@media (max-width: 480px) {
+  .bottom-nav {
+    width: calc(100% - 24px);
+  }
+}
+/* ===== CATEGORY & TAGS ===== */
+
+.video-meta {
+  position: absolute;
+  left: 12px;
+  bottom: 60px;
+  max-width: 70%;
+  color: white;
+  z-index: 5;
+}
+
+.video-category {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #a29bfe;
+  bottom: 120px;
+}
+
+/* TAGS CONTAINER */
+.video-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+  color:#6444ed69;
+}
+
+/* SINGLE TAG */
+.video-tag {
+  background: rgba(120, 120, 255, 0.18);
+  border: 1px solid rgba(140, 140, 255, 0.4);
+  color: #d6d6ff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1;
+  user-select: none;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease;
+}
+
+.video-tag:hover {
+  background: rgba(120, 120, 255, 0.35);
+  transform: scale(1.05);
+}
+/* TOP GRADIENT */
+.video-slide::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 140px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.75),
+    rgba(0,0,0,0)
+  );
+
+  pointer-events: none;
+  z-index: 2;
+}
+.swipe-hint-left {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 28px;
+  color: white;
+  opacity: 0.7;
+  pointer-events: none;
+  animation: swipePulse 1.2s infinite;
+}
+
+@keyframes swipePulse {
+  0% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-50%) translateX(-10px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.2;
+  }
+}
+
+.swipe-hint-left {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.65;
+  pointer-events: none;
+  animation: swipePulse 1.6s ease-in-out infinite;
+}
+
+@keyframes swipePulse {
+  0% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-50%) translateX(-12px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-50%) translateX(0);
+    opacity: 0.2;
+  }
+}
+
+/* =========================================================
+   ВАЖНО:
+   Эти правила у тебя ломают низ (они поднимают элементы вверх).
+   Я их НЕ удалил, а просто закомментировал.
+========================================================= */
+
+/*
+.bottom-nav {
+  bottom: calc(env(safe-area-inset-bottom) + 50px) !important;
+}
+
+.video-meta,
+.user-left,
+.bottom-actions {
+  bottom: calc(env(safe-area-inset-bottom) + 180px) !important;
+}
+*/
