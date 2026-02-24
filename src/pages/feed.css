@@ -125,7 +125,7 @@ height: 100%;
 .bottom-actions {
   position: absolute;
   right: 14px;
-
+bottom: 500px;
   z-index: 5;
 }
 
@@ -134,7 +134,7 @@ height: 100%;
   flex-direction: column;
   gap: 14px;
   align-items: center;
-     bottom: 200px;
+  
 }
 
 .bottom-right button {
