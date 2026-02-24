@@ -614,5 +614,5 @@
 .video-meta,
 .user-left,
 .bottom-actions {
-  bottom: 110px;     /* как у тебя сейчас */
+  margin-bottom: 70px;     /* как у тебя сейчас */
 }
