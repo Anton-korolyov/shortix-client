@@ -608,20 +608,7 @@ async function likeVideo(id: string) {
                   <span>{v.comments}</span>
                 </div>
 
-
-              </div>
-
-            </div>
-  <div className="bottom-nav">
-  <button onClick={() => navigate("/feed")}>
-    <Home size={22} />
-  </button>
-
-  <button onClick={() => navigate("/explore")}>
-    <Search size={22} />
-  </button>
-
-                {v.hasChildren && (
+  {v.hasChildren && (
                   <div>
                     <button
                     onClick={() => {
@@ -652,6 +639,19 @@ navigate(`/feed/flow/${v.id}`);
                    
                   </div>
                 )}
+              </div>
+
+            </div>
+  <div className="bottom-nav">
+  <button onClick={() => navigate("/feed")}>
+    <Home size={22} />
+  </button>
+
+  <button onClick={() => navigate("/explore")}>
+    <Search size={22} />
+  </button>
+
+              
 
   <button onClick={() => navigate(`/profile/${username}`)}>
     <User size={22} />
