@@ -581,30 +581,30 @@ async function likeVideo(id: string) {
 
                 <div>
                  <button
-  disabled={v.username === username}
-  onClick={() => likeVideo(v.id)}
-  style={{
-    opacity: v.username === username ? 0.4 : 1,
-    pointerEvents: v.username === username ? "none" : "auto"
-  }}
->
-  {v.isLiked ? "❤️" : "🤍"}
-</button>
+                    disabled={v.username === username}
+                       onClick={() => likeVideo(v.id)}
+                        style={{
+                            opacity: v.username === username ? 0.4 : 1,
+                            pointerEvents: v.username === username ? "none" : "auto"
+                          }}
+                      >
+                       {v.isLiked ? "❤️" : "🤍"}
+                     </button>
                   <span>{v.likes}</span>
                 </div>
 
                 <div>
                 <button
-  onClick={() => {
-    if (!isAuth) {
-      setShowAuth(true);
-      return;
-    }
-    setCommentsNodeId(v.id);
-  }}
->
-  💬
-</button>
+                       onClick={() => {
+                      if (!isAuth) {
+                       setShowAuth(true);
+                            return;
+                        }
+                     setCommentsNodeId(v.id);
+                }}
+                        >
+                      💬
+                    </button>
                   <span>{v.comments}</span>
                 </div>
 

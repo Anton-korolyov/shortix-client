@@ -125,7 +125,7 @@ height: 100%;
 .bottom-actions {
   position: absolute;
   right: 14px;
-  bottom: 150px;
+   bottom: calc(58px + 16px + env(safe-area-inset-bottom));
   z-index: 5;
 }
 
