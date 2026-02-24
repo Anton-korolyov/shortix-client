@@ -14,7 +14,7 @@
 .feed {
   position: relative;
   width: 390px;
-    height: 100svh;
+    height: 80svh;
   background: black;
 
   overflow-y: auto;
@@ -30,7 +30,7 @@
 @media (max-width: 480px) {
   .feed {
     width: 100vw;
-      height: 100svh;
+      height: 80vh;
     border-radius: 0;
   }
 }
@@ -612,39 +612,3 @@
 }
 
 
-/* ===== FINAL STABLE MOBILE LAYOUT ===== */
-
-.feed-root {
-  height: 100svh;
-}
-
-.feed {
-  height: 100svh;
-  overflow: hidden;
-}
-
-.video-slide {
-  height: 100svh;
-}
-
-.feed-video {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-/* UI выше нижней панели */
-
-.user-left,
-.bottom-actions,
-.video-meta {
-  bottom: 120px;
-}
-
-.bottom-nav {
-  bottom: 12px;
-}
-
-.swipe-hint-left {
-  z-index: 50;
-}
