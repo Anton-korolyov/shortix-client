@@ -612,11 +612,11 @@
 }
 
 .bottom-nav {
-  bottom: calc(env(safe-area-inset-bottom) + 16px) !important;
+  bottom: calc(env(safe-area-inset-bottom) + 50px) !important;
 }
 
 .video-meta,
 .user-left,
 .bottom-actions {
-  bottom: calc(env(safe-area-inset-bottom) + 120px) !important;
+  bottom: calc(env(safe-area-inset-bottom) + 180px) !important;
 }
