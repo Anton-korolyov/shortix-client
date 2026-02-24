@@ -610,3 +610,31 @@
     opacity: 0.2;
   }
 }
+/* ============================
+   MOBILE VIEWPORT FIX
+============================ */
+
+.feed {
+  height: 100dvh;
+  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+}
+
+/* каждый слайд = высота контейнера */
+.video-slide {
+  height: 100%;
+}
+
+/* bottom nav выше */
+.bottom-nav {
+  bottom: calc(10px + env(safe-area-inset-bottom));
+}
+
+/* молния поверх видео */
+.swipe-hint-left {
+  z-index: 20;
+}
+
+/* видео ниже UI */
+.feed-video {
+  z-index: 1;
+}
