@@ -49,9 +49,9 @@
   position: relative;
   width: 100%;
 
+  /* ✅ ВЛЕЗАЕТ ПОЛНОСТЬЮ: экран - tabs - bottom-nav - safe-area */
+  height: calc(100dvh - 56px - 58px - env(safe-area-inset-bottom));
 
-  top: calc(20px + env(safe-area-inset-top));
-  bottom: calc(20px + env(safe-area-inset-bottom));
   scroll-snap-align: start;
   background: black;
   overflow: hidden;
@@ -85,6 +85,8 @@
   inset: 0;
   width: 100%;
   height: 100%;
+    top: calc(20px + env(safe-area-inset-top));
+  bottom: calc(20px + env(safe-area-inset-bottom));
   object-fit: cover;
 }
 
