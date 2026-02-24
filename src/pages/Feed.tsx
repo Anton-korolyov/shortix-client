@@ -507,23 +507,7 @@ async function likeVideo(id: string) {
 )}
   </div>
 )}
-<div className="video-meta">
 
-  {v.category && (
-    <div className="video-category">
-      {v.category}
-    </div>
-  )}
-
-  {v.tags && v.tags.length > 0 && (
-    <div className="video-tags">
-      {v.tags.map((t, i) => (
-        <span key={i}>#{t}</span>
-      ))}
-    </div>
-  )}
-
-</div>
    
 
             {pausedMap[i] && (
@@ -571,7 +555,23 @@ async function likeVideo(id: string) {
                 )}
 
               </div>
+<div className="video-meta">
 
+  {v.category && (
+    <div className="video-category">
+      {v.category}
+    </div>
+  )}
+
+  {v.tags && v.tags.length > 0 && (
+    <div className="video-tags">
+      {v.tags.map((t, i) => (
+        <span key={i}>#{t}</span>
+      ))}
+    </div>
+  )}
+
+</div>
             </div>
 
             {/* ACTIONS */}
