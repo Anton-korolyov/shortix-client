@@ -54,6 +54,7 @@
   scroll-snap-align: start;
   background: black;
   overflow: hidden;
+    padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* ================= GRADIENT ================= */
