@@ -425,316 +425,248 @@ async function likeVideo(id: string) {
      UI
   =========================== */
 
-  return (
-    <div className="feed-root">
+return (
+  <div className="feed-root">
 
-      {/* ===== TABS ===== */}
-      <div className="feed-tabs">
-        <button
-          className={
-            feedMode === "foryou"
-              ? "active"
-              : ""
-          }
-          onClick={() =>
-            setFeedMode("foryou")
-          }
-        >
-          For You
-        </button>
-         {/* LOGOUT */}
-          <button
-  className="logout-top"
-  onClick={() => {
-    logout();
-    navigate("/");
-  }}
->
-  ⎋
-</button>
-  {isAuth && (
-  <button
-    className={feedMode === "following" ? "active" : ""}
-    onClick={() => setFeedMode("following")}
-  >
-    Following
-  </button>
-)}
-      </div>
-
-      <div
-        {...swipeHandlers}
-        className="feed"
-        onScroll={onScroll}
+    {/* ===== TABS ===== */}
+    <div className="feed-tabs">
+      <button
+        className={feedMode === "foryou" ? "active" : ""}
+        onClick={() => setFeedMode("foryou")}
       >
-{initialLoading && (
-  <>
-    <div className="skeleton" />
-    <div className="skeleton" />
-  </>
-)}
-        {videos.map((v, i) => (
+        For You
+      </button>
 
-          <div key={v.id} className="video-slide">
+      <button
+        className="logout-top"
+        onClick={() => {
+          logout();
+          navigate("/");
+        }}
+      >
+        ⎋
+      </button>
 
-            <video
-              className="feed-video"
-              data-index={i}
-              ref={el => {
-                if (el)
-                  videoRefs.current[i] = el;
-              }}
-              src={`${v.url}`}
-              loop
-              playsInline
-              onClick={() => toggle(i)}
-            />
-{/* CATEGORY + TAGS */}
-{v.hasChildren && showSwipeHint && (
-  <div className="swipe-hint-left">
-       {v.hasChildren && showSwipeHint && (
-      <div className="swipe-hint-left">
-      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
-      <path
-        d="M4 12H18M18 12L13 7M18 12L13 17"
-        stroke="white"
-        strokeWidth="0.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  </div>
-)}
-  </div>
-)}
-<div className="video-meta">
-
-  {v.category && (
-    <div className="video-category">
-      {v.category}
-    </div>
-  )}
-
-  {v.tags && v.tags.length > 0 && (
-    <div className="video-tags">
-      {v.tags.map((t, i) => (
-        <span key={i}>#{t}</span>
-      ))}
-    </div>
-  )}
-
-  </div>
-   
-
-            {pausedMap[i] && (
-              <div className="play-overlay">
-                ▶
-              </div>
-            )}
-
-            {likeBurst[i] && (
-              <div className="like-burst">
-                ❤️
-              </div>
-            )}
-
-            {/* USER */}
-            <div className="user-left">
-
-              <img
-                className="user-avatar"
-                src={
-                  v.avatarUrl
-                    ? `${API}${v.avatarUrl}`
-                    : "/avatar.png"
-                }
-                alt="avatar"
-              />
-
-              <div className="user-info">
-
-                <span
-                  className="username"
-                  onClick={() =>
-                    navigate(
-                      `/profile/${v.username}`
-                    )
-                  }
-                >
-                  @{v.username}
-                </span>
-                 <br/>
-                {v.bio && (
-                  <span className="video-title">
-                    {v.bio}
-                  </span>
-                )}
-
-              </div>
-
-            </div>
-
-            {/* ACTIONS */}
-            <div className="bottom-actions">
-
-              <div className="bottom-right">
-
-                <div>
-                 <button
-                    disabled={v.username === username}
-                       onClick={() => likeVideo(v.id)}
-                        style={{
-                            opacity: v.username === username ? 0.4 : 1,
-                            pointerEvents: v.username === username ? "none" : "auto"
-                          }}
-                      >
-                       {v.isLiked ? "❤️" : "🤍"}
-                     </button>
-                  <span>{v.likes}</span>
-                </div>
-
-                <div>
-                <button
-                       onClick={() => {
-                      if (!isAuth) {
-                       setShowAuth(true);
-                            return;
-                        }
-                     setCommentsNodeId(v.id);
-                }}
-                        >
-                      💬
-                    </button>
-                  <span>{v.comments}</span>
-                </div>
-
-
-              </div>
-
-            </div>
-  <div className="bottom-nav">
-       <button onClick={() => navigate("/feed")}>
-             <Home size={22} />
+      {isAuth && (
+        <button
+          className={feedMode === "following" ? "active" : ""}
+          onClick={() => setFeedMode("following")}
+        >
+          Following
         </button>
+      )}
+    </div>
 
-          <button onClick={() => navigate("/explore")}>
-         <Search size={22} />
-           </button>
-
-                {v.hasChildren && (
-                  <div>
-                    <button
-                    onClick={() => {
-                   sessionStorage.setItem(
-                       "feedRestoreId",
-                       v.id
-               );
-                  console.log("SAVED ID:", v.id);
-                   navigate(`/feed/flow/${v.id}`);
-                   }}
-                    >
-                      ➜
-                    </button>
-                
-                  </div>
-                )}
-
-                {!v.hasChildren && (
-                  <div>
-                    <button
-                onClick={() => {
-               setSelectedParentId(v.id);
-                 setShowCreateSheet(true);
-                        }}
-                     >
-                        ➕
-                        </button>
-                   
-                  </div>
-                )}
-
-                   <button onClick={() => navigate(`/profile/${username}`)}>
-                       <User size={22} />
-                          </button>
-                    </div>
-
-
-          </div>
-
-        ))}
-
-        {showAuth && (
-          <LoginRegisterModal
-            onClose={() =>
-              setShowAuth(false)
-            }
-            onSuccess={() =>
-              setShowAuth(false)
-            }
-          />
-        )}
-
-        {commentsNodeId && (
-          <CommentsModal
-            nodeId={commentsNodeId}
-            onClose={() =>
-              setCommentsNodeId(null)
-            }
-          />
-        )}
-
-      </div>
-
-
-
-   {showCreateSheet && (
-  <div
-    className="sheet-overlay"
-    onClick={() => setShowCreateSheet(false)}
-  >
+    {/* ===== FEED ===== */}
     <div
-      className="sheet"
-      onClick={(e) => e.stopPropagation()}
+      {...swipeHandlers}
+      className="feed"
+      onScroll={onScroll}
     >
 
-      <h3>Что создать?</h3>
+      {initialLoading && (
+        <>
+          <div className="skeleton" />
+          <div className="skeleton" />
+        </>
+      )}
 
-      {/* Новое видео */}
-      <button
-        className="sheet-option"
-        onClick={() => {
-          setShowCreateSheet(false);
-          navigate("/create");
-        }}
-      >
-        ▶️ New Story
+      {videos.map((v, i) => (
+        <div key={v.id} className="video-slide">
+
+          <video
+            className="feed-video"
+            data-index={i}
+            ref={el => {
+              if (el) videoRefs.current[i] = el;
+            }}
+            src={v.url}
+            loop
+            playsInline
+            onClick={() => toggle(i)}
+          />
+
+          {/* SWIPE HINT */}
+          {v.hasChildren && showSwipeHint && (
+            <div className="swipe-hint-left">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M4 12H18M18 12L13 7M18 12L13 17"
+                  stroke="white"
+                  strokeWidth="0.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          )}
+
+          {/* CATEGORY + TAGS */}
+          <div className="video-meta">
+            {v.category && (
+              <div className="video-category">
+                {v.category}
+              </div>
+            )}
+
+            {v.tags && v.tags.length > 0 && (
+              <div className="video-tags">
+                {v.tags.map((t, idx) => (
+                  <span key={idx}>#{t}</span>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* PLAY ICON */}
+          {pausedMap[i] && (
+            <div className="play-overlay">▶</div>
+          )}
+
+          {/* USER INFO */}
+          <div className="user-left">
+            <img
+              className="user-avatar"
+              src={
+                v.avatarUrl
+                  ? `${API}${v.avatarUrl}`
+                  : "/avatar.png"
+              }
+              alt="avatar"
+            />
+
+            <div className="user-info">
+              <span
+                className="username"
+                onClick={() => navigate(`/profile/${v.username}`)}
+              >
+                @{v.username}
+              </span>
+
+              {v.bio && (
+                <span className="video-title">
+                  {v.bio}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* ACTIONS */}
+          <div className="bottom-actions">
+
+            <div className="bottom-right">
+
+              <div>
+                <button
+                  disabled={v.username === username}
+                  onClick={() => likeVideo(v.id)}
+                  style={{
+                    opacity: v.username === username ? 0.4 : 1,
+                    pointerEvents: v.username === username ? "none" : "auto"
+                  }}
+                >
+                  {v.isLiked ? "❤️" : "🤍"}
+                </button>
+                <span>{v.likes}</span>
+              </div>
+
+              <div>
+                <button
+                  onClick={() => {
+                    if (!isAuth) {
+                      setShowAuth(true);
+                      return;
+                    }
+                    setCommentsNodeId(v.id);
+                  }}
+                >
+                  💬
+                </button>
+                <span>{v.comments}</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      ))}
+
+      {showAuth && (
+        <LoginRegisterModal
+          onClose={() => setShowAuth(false)}
+          onSuccess={() => setShowAuth(false)}
+        />
+      )}
+
+      {commentsNodeId && (
+        <CommentsModal
+          nodeId={commentsNodeId}
+          onClose={() => setCommentsNodeId(null)}
+        />
+      )}
+
+    </div>
+
+    {/* ===== SINGLE BOTTOM NAV (FIXED) ===== */}
+    <div className="bottom-nav">
+      <button onClick={() => navigate("/feed")}>
+        <Home size={22} />
       </button>
 
-      {/* Продолжение */}
-      
-      <button
-        className="sheet-option"
-        onClick={() => {
-          if (!selectedParentId) return;
-          setShowCreateSheet(false);
-          navigate(`/create?parent=${selectedParentId}`);
-        }}
-      >
-        🔗 Continue Story
+      <button onClick={() => navigate("/explore")}>
+        <Search size={22} />
       </button>
 
-      <button
-        className="sheet-cancel"
+      <button onClick={() => navigate(`/profile/${username}`)}>
+        <User size={22} />
+      </button>
+    </div>
+
+    {/* ===== CREATE SHEET ===== */}
+    {showCreateSheet && (
+      <div
+        className="sheet-overlay"
         onClick={() => setShowCreateSheet(false)}
       >
-          Cancel
-      </button>
+        <div
+          className="sheet"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h3>Что создать?</h3>
 
-    </div>
-  </div>
-  
-)}
+          <button
+            className="sheet-option"
+            onClick={() => {
+              setShowCreateSheet(false);
+              navigate("/create");
+            }}
+          >
+            ▶️ New Story
+          </button>
+
+          <button
+            className="sheet-option"
+            onClick={() => {
+              if (!selectedParentId) return;
+              setShowCreateSheet(false);
+              navigate(`/create?parent=${selectedParentId}`);
+            }}
+          >
+            🔗 Continue Story
+          </button>
+
+          <button
+            className="sheet-cancel"
+            onClick={() => setShowCreateSheet(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    )}
+
     <Outlet />
-    </div>
-  );
+
+  </div>
+);
 }
