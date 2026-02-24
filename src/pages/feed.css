@@ -2,7 +2,7 @@
 
 .feed-root {
   width: 100vw;
-  height: 100dvh;
+    height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@
 .feed {
   position: relative;
   width: 390px;
-  height: 100dvh;
+  height: 100%;
   background: black;
 
   overflow-y: auto;
@@ -30,7 +30,7 @@
 @media (max-width: 480px) {
   .feed {
     width: 100vw;
-    height: 100dvh;
+    height: 100%;
     border-radius: 0;
   }
 }
@@ -44,7 +44,7 @@
 .video-slide {
   position: relative;
   width: 100%;
-  height: 100dvh;
+  height: 100%;
   scroll-snap-align: start;
   background: black;
   overflow: hidden;
@@ -614,27 +614,21 @@
    MOBILE VIEWPORT FIX
 ============================ */
 
-.feed {
-  height: 100dvh;
-  padding-bottom: calc(80px + env(safe-area-inset-bottom));
+/* ===== FIX HEIGHT CHAIN ===== */
+
+.feed-root {
+  height: 100svh;
 }
 
-/* каждый слайд = высота контейнера */
+.feed {
+  height: 100%;
+  padding-bottom: 96px;
+}
+
 .video-slide {
   height: 100%;
 }
 
-/* bottom nav выше */
-.bottom-nav {
-  bottom: calc(10px + env(safe-area-inset-bottom));
-}
-
-/* молния поверх видео */
-.swipe-hint-left {
-  z-index: 20;
-}
-
-/* видео ниже UI */
 .feed-video {
-  z-index: 1;
+  height: 100%;
 }
