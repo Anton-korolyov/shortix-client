@@ -525,7 +525,7 @@ height: 100%;
   font-size: 14px;
 
   color: #a29bfe;
-  bottom: 90px;
+  
 }
 
 /* TAGS CONTAINER */
@@ -535,7 +535,7 @@ height: 100%;
   gap: 6px;
   margin-top: 6px;
   color:#6444ed69;
-  bottom: 120;
+ 
 }
 
 /* SINGLE TAG */
