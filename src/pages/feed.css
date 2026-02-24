@@ -47,7 +47,7 @@
 .video-slide {
   position: relative;
   width: 100%;
-/* FIX: было 100dvh */
+  height: 100dvh; /* FIX: было 100dvh */
   scroll-snap-align: start;
   background: black;
   overflow: hidden;
