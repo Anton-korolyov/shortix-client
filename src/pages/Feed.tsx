@@ -80,16 +80,16 @@ export default function Feed() {
    EMPTY FEED REDIRECT
 =========================== */
 
-
 useEffect(() => {
 
-  // ждём пока загрузка закончилась
+  // если идёт загрузка — ничего не делаем
   if (initialLoading) return;
 
   // только режим ForYou
   if (feedMode !== "foryou") return;
 
-  if (videos.length === 0) {
+  // если реально получили пустой ответ
+  if (videos.length === 0 && hasMore === false) {
 
     if (!isAuth) {
 
@@ -108,7 +108,7 @@ useEffect(() => {
 
   }
 
-}, [initialLoading, videos, isAuth, feedMode]);
+}, [initialLoading, videos, hasMore, isAuth, feedMode]);
 
 
 useEffect(() => {
