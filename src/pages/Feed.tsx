@@ -59,7 +59,7 @@ export default function Feed() {
   const [showAuth, setShowAuth] = useState(false);
   const [commentsNodeId, setCommentsNodeId] =
     useState<string | null>(null);
-const [feedLoaded, setFeedLoaded] = useState(false);
+
   const [pausedMap, setPausedMap] =
     useState<{ [key: number]: boolean }>({});
 
@@ -83,10 +83,10 @@ const [feedLoaded, setFeedLoaded] = useState(false);
 
 useEffect(() => {
 
-  // ждём пока фид реально загрузился
-  if (!feedLoaded) return;
+  // ждём пока загрузка закончилась
+  if (initialLoading) return;
 
-  // ❗ редирект только в режиме ForYou
+  // только режим ForYou
   if (feedMode !== "foryou") return;
 
   if (videos.length === 0) {
@@ -108,7 +108,7 @@ useEffect(() => {
 
   }
 
-}, [feedLoaded, videos, isAuth, feedMode]);
+}, [initialLoading, videos, isAuth, feedMode]);
 
 
 useEffect(() => {
@@ -244,7 +244,7 @@ useEffect(() => {
     setPage(2);
 
     setInitialLoading(false);
-    setFeedLoaded(true);  
+  
   }
 
   reload();
