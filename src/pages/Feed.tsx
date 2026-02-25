@@ -690,8 +690,16 @@ navigate(`/feed/flow/${v.id}`);
                     >
                       ➜
                     </button>
-                
+                                    <button
+  onClick={() => {
+    setSelectedParentId(v.id);
+    setShowCreateSheet(true);
+  }}
+>
+  ➕
+</button>
                   </div>
+                  
                 )}
 
                 {!v.hasChildren && (
