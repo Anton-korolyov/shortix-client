@@ -46,6 +46,7 @@
   width: 100%;
    height: calc(100dvh - 58px); /* FIX: было 100dvh */
   scroll-snap-align: start;
+   scroll-snap-stop: always; 
   background: black;
   overflow: hidden;
 bottom: 20px;
