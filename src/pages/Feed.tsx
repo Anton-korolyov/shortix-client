@@ -77,6 +77,11 @@ export default function Feed() {
     const [restored, setRestored] = useState(false);
     const location = useLocation();
     const [forYouLoadedOnce, setForYouLoadedOnce] = useState(false);
+    useEffect(() => {
+  if (feedMode !== "foryou") {
+    setForYouLoadedOnce(false);
+  }
+}, [feedMode]);
     /* ===========================
    EMPTY FEED REDIRECT
 =========================== */
