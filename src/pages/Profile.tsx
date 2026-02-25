@@ -232,7 +232,7 @@ export default function Profile() {
                 onClick={() => nav(`/video/${v.id}`, { state: { from: "profile" } })}
               >
                 <video
-                  src={`${API}${v.previewUrl}`}
+                  src={`${v.previewUrl}`}
                   muted
                   playsInline
                   preload="metadata"
