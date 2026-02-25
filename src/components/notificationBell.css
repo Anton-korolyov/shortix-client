@@ -96,9 +96,9 @@
 .bell-phone-left {
   position: fixed;
 
-  top: 8px;
-  left: 50%;
-  transform: translateX(-45px);
+  top: 10px;
+  left: 10px;
+
 
   z-index: 9999;
   pointer-events: auto;
