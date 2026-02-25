@@ -56,14 +56,3 @@
     transform: translateY(0);
   }
 }
-.bell-phone-left {
-  position: fixed !important;
-  top: 12px !important;
-
-  left: 50vw !important;
-  right: auto !important;
-  inset: unset !important;
-
-  transform: translateX(-40px) !important;
-  z-index: 999999 !important;
-}
