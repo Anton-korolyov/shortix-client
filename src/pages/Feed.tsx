@@ -58,7 +58,7 @@ export default function Feed() {
   const [showAuth, setShowAuth] = useState(false);
   const [commentsNodeId, setCommentsNodeId] =
     useState<string | null>(null);
-
+const [feedLoaded, setFeedLoaded] = useState(false);
   const [pausedMap, setPausedMap] =
     useState<{ [key: number]: boolean }>({});
 
@@ -74,7 +74,36 @@ export default function Feed() {
 
 
     const [restored, setRestored] = useState(false);
-    
+    /* ===========================
+   EMPTY FEED REDIRECT
+=========================== */
+
+
+useEffect(() => {
+
+  // ждём пока фид реально загрузился
+  if (!feedLoaded) return;
+
+  if (videos.length === 0) {
+
+    if (!isAuth) {
+
+      localStorage.setItem(
+        "afterLoginRedirect",
+        "/create"
+      );
+
+      setShowAuth(true);
+
+    } else {
+
+      navigate("/create");
+
+    }
+
+  }
+
+}, [feedLoaded, videos, isAuth]);
   /* ===========================
      LOGIN EVENT
   =========================== */
@@ -192,6 +221,7 @@ useEffect(() => {
     setPage(2);
 
     setInitialLoading(false);
+    setFeedLoaded(true);  
   }
 
   reload();
