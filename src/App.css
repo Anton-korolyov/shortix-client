@@ -58,11 +58,9 @@
 }
 .bell-phone-left {
   position: fixed;
+  top: 12px;
 
-
-  left: 58%;
-  transform: translateX(-200px);
+  left: calc(50% - 195px);
 
   z-index: 9999;
-  pointer-events: auto;
 }
