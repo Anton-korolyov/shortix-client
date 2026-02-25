@@ -76,34 +76,31 @@ export default function Feed() {
 
     const [restored, setRestored] = useState(false);
     const location = useLocation();
+    const [forYouLoadedOnce, setForYouLoadedOnce] = useState(false);
     /* ===========================
    EMPTY FEED REDIRECT
 =========================== */
 
 useEffect(() => {
 
-  if (initialLoading) return;
+  if (!forYouLoadedOnce) return;      // 👈 ключевая строка
+  if (feedMode !== "foryou") return;
 
   if (videos.length === 0) {
 
     if (!isAuth) {
-
       localStorage.setItem(
         "afterLoginRedirect",
         "/create"
       );
-
       setShowAuth(true);
-
     } else {
-
       navigate("/create");
-
     }
 
   }
 
-}, [initialLoading, videos, isAuth]);
+}, [videos, feedMode, isAuth, forYouLoadedOnce]);
 
 
 useEffect(() => {
@@ -239,7 +236,9 @@ useEffect(() => {
     setPage(2);
 
     setInitialLoading(false);
-  
+  if (feedMode === "foryou") {
+  setForYouLoadedOnce(true);
+}
   }
 
   reload();
