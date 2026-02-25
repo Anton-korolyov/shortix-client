@@ -59,8 +59,8 @@
 .bell-phone-left {
   position: fixed;
 
-  top: 10px;
-  left: 50%;
+
+  left: 58%;
   transform: translateX(-200px);
 
   z-index: 9999;
