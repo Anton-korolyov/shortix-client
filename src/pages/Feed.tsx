@@ -82,14 +82,9 @@ export default function Feed() {
 
 useEffect(() => {
 
-  // если идёт загрузка — ничего не делаем
   if (initialLoading) return;
 
-  // только режим ForYou
-  if (feedMode !== "foryou") return;
-
-  // если реально получили пустой ответ
-  if (videos.length === 0 && hasMore === false) {
+  if (videos.length === 0) {
 
     if (!isAuth) {
 
@@ -108,7 +103,7 @@ useEffect(() => {
 
   }
 
-}, [initialLoading, videos, hasMore, isAuth, feedMode]);
+}, [initialLoading, videos, isAuth]);
 
 
 useEffect(() => {
