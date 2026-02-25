@@ -409,7 +409,20 @@ navigate(`/feed/flow/${v.id}`);
     delta: 80,
     trackMouse: true
   });
+async function shareVideo(id: string) {
 
+  const url = `${window.location.origin}/video/${id}`;
+
+  if (navigator.share) {
+    await navigator.share({
+      title: "Check this video",
+      url
+    });
+  } else {
+    await navigator.clipboard.writeText(url);
+    alert("Link copied!");
+  }
+}
   /* ===========================
      PLAY / PAUSE
   =========================== */
@@ -646,7 +659,14 @@ async function likeVideo(id: string) {
             <div className="bottom-actions">
 
               <div className="bottom-right">
+                 <div>
+                  <button
+  onClick={() => shareVideo(v.id)}
+>
+  📤
+</button>
 
+                 </div>
                 <div>
                  <button
   disabled={v.username === username}
