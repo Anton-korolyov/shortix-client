@@ -60,7 +60,7 @@
   position: fixed;
   top: 12px;
 
-  left: calc(50% - 195px);
+  left: 50px;
 
   z-index: 9999;
 }
