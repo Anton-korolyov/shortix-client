@@ -83,8 +83,9 @@ export default function Feed() {
 
 useEffect(() => {
 
-  if (!forYouLoadedOnce) return;      // 👈 ключевая строка
+  if (!forYouLoadedOnce) return;
   if (feedMode !== "foryou") return;
+  if (initialLoading) return;   // 🔥 ВАЖНО
 
   if (videos.length === 0) {
 
@@ -100,7 +101,7 @@ useEffect(() => {
 
   }
 
-}, [videos, feedMode, isAuth, forYouLoadedOnce]);
+}, [videos, feedMode, isAuth, forYouLoadedOnce, initialLoading]);
 
 
 useEffect(() => {
@@ -236,8 +237,10 @@ useEffect(() => {
     setPage(2);
 
     setInitialLoading(false);
-  if (feedMode === "foryou") {
-  setForYouLoadedOnce(true);
+if (feedMode === "foryou") {
+  setTimeout(() => {
+    setForYouLoadedOnce(true);
+  }, 0);
 }
   }
 
