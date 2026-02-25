@@ -157,7 +157,7 @@ export default function Profile() {
               <img
                 src={
                   profile?.avatarUrl
-                    ? `${profile.avatarUrl}`
+                    ? `${API}${profile.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"
