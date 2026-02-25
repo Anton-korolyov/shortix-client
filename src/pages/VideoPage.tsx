@@ -114,7 +114,7 @@ async function onDelete() {
 
         {/* VIDEO */}
         <video
-          src={`${API}${video.url}`}
+          src={`${video.url}`}
           autoPlay
           loop
           muted

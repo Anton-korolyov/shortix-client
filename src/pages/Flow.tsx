@@ -618,7 +618,7 @@ export default function Flow() {
 
           <video
             className="flow-video"
-            src={`${API}${v.url}`}
+            src={`${v.url}`}
             loop
             playsInline
             autoPlay

@@ -109,7 +109,7 @@ useEffect(() => {
               onClick={() => nav(`/video/${v.id}`)}
             >
               <video
-                src={`${API}${v.url}`}
+                src={`${v.url}`}
                 muted
                 playsInline
               />

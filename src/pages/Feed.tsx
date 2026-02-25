@@ -551,7 +551,7 @@ async function likeVideo(id: string) {
                 className="user-avatar"
                 src={
                   v.avatarUrl
-                    ? `${API}${v.avatarUrl}`
+                    ? `${v.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"
