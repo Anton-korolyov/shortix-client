@@ -677,7 +677,7 @@ async function likeVideo(id: string) {
                 </div>
 
   {v.hasChildren && (
-                  <div>
+                  <div className="action-stack">
                     <div>
                  <button
                     onClick={() => {
