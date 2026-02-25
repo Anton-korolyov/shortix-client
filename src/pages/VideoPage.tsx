@@ -24,7 +24,7 @@ export default function VideoPage() {
   const { id } = useParams();
   const nav = useNavigate();
   const location = useLocation();
-  const API = import.meta.env.VITE_API_URL;
+ 
   // откуда пришли
   const from = location.state?.from;
 

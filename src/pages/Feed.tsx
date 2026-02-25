@@ -45,7 +45,7 @@ type Video = {
 export default function Feed() {
  
   const navigate = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+
   const { isAuth , username,logout} = useAuth();
   const [initialLoading, setInitialLoading] = useState(true);
   const [videos, setVideos] = useState<Video[]>([]);
