@@ -678,7 +678,8 @@ async function likeVideo(id: string) {
 
   {v.hasChildren && (
                   <div>
-                    <button
+                    <div>
+                 <button
                     onClick={() => {
   sessionStorage.setItem(
     "feedRestoreId",
@@ -690,7 +691,10 @@ navigate(`/feed/flow/${v.id}`);
                     >
                       ➜
                     </button>
-                                    <button
+
+                    </div>
+   <div>
+                                  <button
   onClick={() => {
     setSelectedParentId(v.id);
     setShowCreateSheet(true);
@@ -698,6 +702,8 @@ navigate(`/feed/flow/${v.id}`);
 >
   ➕
 </button>
+   </div>
+  
                   </div>
                   
                 )}
