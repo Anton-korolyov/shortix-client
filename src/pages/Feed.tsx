@@ -86,6 +86,9 @@ useEffect(() => {
   // ждём пока фид реально загрузился
   if (!feedLoaded) return;
 
+  // ❗ редирект только в режиме ForYou
+  if (feedMode !== "foryou") return;
+
   if (videos.length === 0) {
 
     if (!isAuth) {
@@ -105,7 +108,7 @@ useEffect(() => {
 
   }
 
-}, [feedLoaded, videos, isAuth]);
+}, [feedLoaded, videos, isAuth, feedMode]);
 
 
 useEffect(() => {
