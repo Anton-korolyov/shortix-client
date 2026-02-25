@@ -74,33 +74,7 @@ export default function Feed() {
 
 
     const [restored, setRestored] = useState(false);
-    /* ===========================
-   EMPTY FEED REDIRECT
-=========================== */
-
-
-useEffect(() => {
-
-  // ждём когда закончится первая загрузка
-  if (loadingRef.current) return;
-
-  if (videos.length === 0) {
-
-    if (!isAuth) {
-
-      localStorage.setItem(
-        "afterLoginRedirect",
-        "/create"
-      );
-
-      setShowAuth(true);
-    } else {
-      navigate("/create");
-    }
-
-  }
-
-}, [videos, isAuth]);
+    
   /* ===========================
      LOGIN EVENT
   =========================== */
