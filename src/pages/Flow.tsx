@@ -4,9 +4,12 @@ import {
   useNavigate
 } from "react-router-dom";
 import { useSwipeable } from "react-swipeable";
+
 import { getFlow, toggleLike } from "../api/api";
+
 import LoginRegisterModal from "../components/LoginRegisterModal";
 import CommentsModal from "../components/CommentsModal";
+import { useAuth } from "../context/AuthContext";
 
 import "./Flow.css";
 
