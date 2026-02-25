@@ -19,6 +19,7 @@ import CommentsModal from "../components/CommentsModal";
 import { startNotificationHub } from "../api/notificationHub";
 import { useAuth } from "../context/AuthContext";
 import { Outlet } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 /* ===========================
    TYPES
 =========================== */
@@ -74,6 +75,7 @@ const [feedLoaded, setFeedLoaded] = useState(false);
 
 
     const [restored, setRestored] = useState(false);
+    const location = useLocation();
     /* ===========================
    EMPTY FEED REDIRECT
 =========================== */
@@ -104,6 +106,24 @@ useEffect(() => {
   }
 
 }, [feedLoaded, videos, isAuth]);
+
+
+useEffect(() => {
+
+  const isFlow = location.pathname.includes("/flow/");
+
+  if (isFlow) {
+
+    // останавливаем все видео
+    videoRefs.current.forEach(v => {
+      if (v) {
+        v.pause();
+      }
+    });
+
+  }
+
+}, [location.pathname]);
   /* ===========================
      LOGIN EVENT
   =========================== */
@@ -266,47 +286,58 @@ useEffect(() => {
      AUTOPLAY
   =========================== */
 
-  useEffect(() => {
+useEffect(() => {
 
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
+  // ❌ если мы внутри Flow — observer не запускаем
+  if (location.pathname.includes("/flow/")) return;
 
-          const v =
-            entry.target as HTMLVideoElement;
+  const observer = new IntersectionObserver(
 
-          const index =
-            Number(v.dataset.index);
+    entries => {
+      entries.forEach(entry => {
 
-          if (entry.isIntersecting) {
-            if (v.paused) {
-    v.play().catch(() => {});
-  }
-            setPausedMap(p => ({
-              ...p,
-              [index]: false
-            }));
-            setCurrentIndex(index);
-          } else {
-            v.pause();
-            setPausedMap(p => ({
-              ...p,
-              [index]: true
-            }));
+        const v =
+          entry.target as HTMLVideoElement;
+
+        const index =
+          Number(v.dataset.index);
+
+        if (entry.isIntersecting) {
+
+          if (v.paused) {
+            v.play().catch(() => {});
           }
 
-        });
-      },
-      { threshold: 0.7 }
-    );
+          setPausedMap(p => ({
+            ...p,
+            [index]: false
+          }));
 
-    videoRefs.current.forEach(
-      v => v && observer.observe(v)
-    );
+          setCurrentIndex(index);
 
-    return () => observer.disconnect();
+        } else {
 
-  }, [videos]);
+          v.pause();
+
+          setPausedMap(p => ({
+            ...p,
+            [index]: true
+          }));
+
+        }
+
+      });
+    },
+    { threshold: 0.7 }
+  );
+
+  videoRefs.current.forEach(
+    v => v && observer.observe(v)
+  );
+
+  return () => observer.disconnect();
+
+}, [videos, location.pathname]);
 
   /* ===========================
      RESTORE POSITION
