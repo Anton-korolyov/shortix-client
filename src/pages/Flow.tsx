@@ -577,7 +577,7 @@ export default function Flow() {
                 >
 
                   <video
-                    src={`${API}${b.url}`}
+                    src={`${b.url}`}
                     muted
                   />
 
