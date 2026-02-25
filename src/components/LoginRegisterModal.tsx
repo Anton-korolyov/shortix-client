@@ -19,7 +19,7 @@ export default function LoginRegisterModal({ onClose, onSuccess }: Props) {
     return JSON.parse(atob(base64));
   }
 
- async function submit() {
+async function submit() {
   try {
     setLoading(true);
 
@@ -30,12 +30,19 @@ export default function LoginRegisterModal({ onClose, onSuccess }: Props) {
 
     const payload = parseJwt(res.accessToken);
 
-    // 🔥 ВОТ ГЛАВНОЕ
     authLogin(
       res.accessToken,
       res.refreshToken,
       payload.username
     );
+
+    const redirect =
+      localStorage.getItem("afterLoginRedirect");
+
+    if (redirect) {
+      localStorage.removeItem("afterLoginRedirect");
+      window.location.href = redirect;
+    }
 
     onSuccess();
 
