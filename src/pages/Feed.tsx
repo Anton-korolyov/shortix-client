@@ -469,6 +469,7 @@ navigate(`/feed/flow/${v.id}`);
       }));
     } else {
       v.pause();
+      v.currentTime = 0;
       setPausedMap(p => ({
         ...p,
         [i]: true
