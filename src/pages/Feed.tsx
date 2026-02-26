@@ -296,45 +296,50 @@ useEffect(() => {
   // ❌ если мы внутри Flow — observer не запускаем
   if (location.pathname.includes("/flow/")) return;
 
-  const observer = new IntersectionObserver(
+const observer = new IntersectionObserver(
 
-    entries => {
-      entries.forEach(entry => {
+  entries => {
 
-        const v =
-          entry.target as HTMLVideoElement;
+    entries.forEach(entry => {
 
-        const index =
-          Number(v.dataset.index);
+      const v = entry.target as HTMLVideoElement;
+      const index = Number(v.dataset.index);
 
-        if (entry.isIntersecting) {
+      // ✅ ВИДЕО В ЦЕНТРЕ
+      if (entry.isIntersecting) {
 
-          if (v.paused) {
-            v.play().catch(() => {});
-          }
-
-          setPausedMap(p => ({
-            ...p,
-            [index]: false
-          }));
-
-          setCurrentIndex(index);
-
-        } else {
-
+        // 🔥 ВСЕГДА С НАЧАЛА
+        try {
           v.pause();
+          v.currentTime = 0;
+        } catch {}
 
-          setPausedMap(p => ({
-            ...p,
-            [index]: true
-          }));
+        v.play().catch(() => {});
 
-        }
+        setPausedMap(p => ({
+          ...p,
+          [index]: false
+        }));
 
-      });
-    },
-    { threshold: 0.7 }
-  );
+        setCurrentIndex(index);
+
+      }
+      else {
+
+        v.pause();
+
+        setPausedMap(p => ({
+          ...p,
+          [index]: true
+        }));
+
+      }
+
+    });
+
+  },
+  { threshold: 0.7 }
+);
 
   videoRefs.current.forEach(
     v => v && observer.observe(v)
