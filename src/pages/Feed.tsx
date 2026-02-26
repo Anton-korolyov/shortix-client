@@ -584,6 +584,7 @@ async function likeVideo(id: string) {
           <div key={v.id} className="video-slide">
 
             <video
+              preload="auto"
               className="feed-video"
               data-index={i}
               ref={el => {
