@@ -417,28 +417,27 @@ height: 100%;
   left: 50%;
   transform: translateX(-50%);
 
-  /* IMPORTANT: not glued to bottom */
-  bottom: calc(22px + env(safe-area-inset-bottom));
+  bottom: calc(24px + env(safe-area-inset-bottom));
 
-  /* IMPORTANT: not fixed width/height */
-  width: auto;
-  height: auto;
   padding: 10px 22px;
 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 34px;
+  gap: 36px;
 
   border-radius: 999px;
 
-  /* subtle glass */
-  background: rgba(0, 0, 0, 0.28);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  /* ✅ almost invisible */
+  background: rgba(255,255,255,0.06);
 
-  /* soft premium shadow (no “stripe”) */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* ✅ soft floating glow */
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.35),
+    inset 0 0 0 1px rgba(255,255,255,.08);
 
   z-index: 1000;
 }
@@ -454,24 +453,20 @@ height: 100%;
   border: none;
   border-radius: 50%;
 
-  background: transparent;                 /* no circles/pills behind */
-  color: rgba(255, 255, 255, 0.92);
+  background: transparent;
+  color: white;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  cursor: pointer;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.75));
 
-  /* readability on any video */
-  filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.75));
-
-  transition: transform 0.18s ease, opacity 0.18s ease;
+  transition: transform .2s ease;
 }
 
 .bottom-nav button:hover {
   transform: scale(1.12);
-  opacity: 1;
 }
 
 /* ===========================
@@ -510,20 +505,17 @@ height: 100%;
   width: 52px;
   height: 52px;
 
-  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    #7b5cff,
+    #5b3df5
+  );
 
-  background: linear-gradient(135deg, #7b5cff, #5b3df5);
-  color: #ffffff;
-
-  /* lift a bit (modern feel) */
   transform: translateY(-6px);
 
-  /* glow but not “heavy” */
   box-shadow:
-    0 10px 22px rgba(0, 0, 0, 0.35),
-    0 0 14px rgba(120, 100, 255, 0.35);
-
-  filter: none;
+    0 10px 24px rgba(0,0,0,.4),
+    0 0 16px rgba(120,100,255,.4);
 }
 
 .bottom-nav button.plus:hover {
