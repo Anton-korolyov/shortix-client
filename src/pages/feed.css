@@ -405,31 +405,20 @@ height: 100%;
    BOTTOM NAV (GLASS STYLE)
 ============================ */
 
-.bottom-nav {
-  position: fixed;               /* FIX: было absolute */
-  bottom: 0;                     /* FIX */
-  left: 50%;
-  transform: translateX(-50%);
+.bottom-nav{
+  /* ...твои свойства... */
 
-  width: 330px;
-  height: 58px;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0.12),
+    rgba(0,0,0,0.00)
+  );
 
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
-  background: rgba(0,0,0,0.35);   /* легче */
-  backdrop-filter: blur(8px);
-
-  border-radius: 36px;
-
-  /* FIX: safe-area уходит внутрь, а не двигает бар вверх */
-  padding-bottom: env(safe-area-inset-bottom);
-
-  box-shadow:
-    0 8px 30px rgba(0,0,0,.6);
-
-  z-index: 100;
+  box-shadow: none; /* убираем ощущение “полосы” */
 }
 
 /* ============================
