@@ -33,7 +33,7 @@ type Paged<T> = {
 export default function Profile() {
   const { username } = useParams();
   const nav = useNavigate();
-
+  const API = import.meta.env.VITE_API_URL;
   const [videos, setVideos] = useState<Video[]>([]);
   const [profile, setProfile] = useState<ProfileInfo | null>(null);
 
@@ -86,10 +86,10 @@ export default function Profile() {
         let mine = false;
 
         if (username) {
-          p = await apiGet(`/profile/${username}`);
+          p = await apiGet(`/api/profile/${username}`);
           whoUsername = p.username;
         } else {
-          p = await apiGet("/profile/me");
+          p = await apiGet("/api/profile/me");
           whoUsername = p.username;
           mine = true;
         }
@@ -97,7 +97,6 @@ export default function Profile() {
         if (cancelled) return;
 
         setProfile(p);
-
 
         const stats = await getFollowCount(p.username);
         if (!cancelled) setFollowStats(stats);
@@ -110,7 +109,7 @@ export default function Profile() {
         // first page
         await loadVideos(1, true, whoUsername, mine);
       } catch (e) {
-       
+        // можешь вывести toast
         console.error(e);
       }
     }
@@ -158,7 +157,7 @@ export default function Profile() {
               <img
                 src={
                   profile?.avatarUrl
-                    ? `${profile.avatarUrl}`
+                    ? `${API}${profile.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"
