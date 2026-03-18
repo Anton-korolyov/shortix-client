@@ -8,7 +8,7 @@ import {
 import "./EditProfile.css";
 
 export default function EditProfile() {
-const API = import.meta.env.VITE_API_URL;
+
   const nav = useNavigate();
 
   // username из localStorage
