@@ -29,7 +29,7 @@ async function request(url: string, options: RequestInit = {}) {
     }
 
     const refreshRes = await fetch(
-      API + "/api/auth/refresh",
+      API + "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -153,7 +153,7 @@ export async function apiUpload(url: string, file: File) {
       localStorage.getItem("refreshToken");
 
     const refreshRes = await fetch(
-      API + "/api/auth/refresh",
+      API + "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -203,11 +203,11 @@ return text ? JSON.parse(text) : null;
 // AUTH
 // ===========================
 export function register(email: string, password: string) {
-  return apiPost("/api/auth/register", { email, password });
+  return apiPost("/auth/register", { email, password });
 }
 
 export function login(email: string, password: string) {
-  return apiPost("/api/auth/login", { email, password });
+  return apiPost("/auth/login", { email, password });
 }
 
 // ===========================
@@ -250,7 +250,7 @@ tags?.forEach((t, i) => {
   form.append(`Tags[${i}]`, t);
 });
 
-  let res = await fetch(API + "/api/video/upload", {
+  let res = await fetch(API + "/video/upload", {
     method: "POST",
     headers: {
       Authorization: accessToken
@@ -269,7 +269,7 @@ tags?.forEach((t, i) => {
       localStorage.getItem("refreshToken");
 
     const refreshRes = await fetch(
-      API + "/api/auth/refresh",
+      API + "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -296,7 +296,7 @@ tags?.forEach((t, i) => {
     );
 
     // 🔁 RETRY
-    res = await fetch(API + "/api/video/upload", {
+    res = await fetch(API + "/video/upload", {
       method: "POST",
       headers: {
         Authorization:
@@ -316,43 +316,43 @@ tags?.forEach((t, i) => {
 }
 
 export function deleteVideo(id: string) {
-  return apiDelete(`/api/video/${id}`);
+  return apiDelete(`/video/${id}`);
 }
 
 // ===========================
 // LIKES
 // ===========================
 export function toggleLike(nodeId: string) {
-  return apiPost(`/api/like/${nodeId}`, {});
+  return apiPost(`/like/${nodeId}`, {});
 }
 
 export function getLikeCount(nodeId: string) {
-  return apiGet(`/api/like/${nodeId}/count`);
+  return apiGet(`/like/${nodeId}/count`);
 }
 
 // ===========================
 // COMMENTS
 // ===========================
 export function addComment(nodeId: string, text: string) {
-  return apiPost("/api/comment", {
+  return apiPost("/comment", {
     storyNodeId: nodeId,
     text
   });
 }
 
 export function getComments(nodeId: string) {
-  return apiGet(`/api/comment/${nodeId}`);
+  return apiGet(`/comment/${nodeId}`);
 }
 
 export function getCommentTree(nodeId: string) {
-  return apiGet(`/api/comment/${nodeId}/tree`);
+  return apiGet(`/comment/${nodeId}/tree`);
 }
 
 // ===========================
 // VIEW
 // ===========================
 export function addView(videoId: string) {
-  return apiPost(`/api/view/${videoId}`, {});
+  return apiPost(`/view/${videoId}`, {});
 }
 
 // ===========================
@@ -362,7 +362,7 @@ export function saveWatchTime(
   videoId: string,
   seconds: number
 ) {
-  return apiPost("/api/watch/watchtime", {
+  return apiPost("/watch/watchtime", {
     videoId,
     seconds
   });
@@ -372,14 +372,14 @@ export function saveWatchTime(
 // FLOW
 // ===========================
 export function getFlow(nodeId: string) {
-  return apiGet(`/api/flow/${nodeId}`);
+  return apiGet(`/flow/${nodeId}`);
 }
 
 // ===========================
 // PROFILE
 // ===========================
 export function getMyVideos() {
-  return apiGet("/api/profile/my-videos");
+  return apiGet("/profile/my-videos");
 }
 
 // ===========================
@@ -400,48 +400,48 @@ export type ProfileVideoItem = {
 };
 
 export function getMyVideosPaged(page = 1, pageSize = 18, q = ""): Promise<Paged<ProfileVideoItem>> {
-  return apiGet(`/api/profile/my-videos?page=${page}&pageSize=${pageSize}&q=${encodeURIComponent(q)}`);
+  return apiGet(`/profile/my-videos?page=${page}&pageSize=${pageSize}&q=${encodeURIComponent(q)}`);
 }
 
 export function getUserVideosPaged(username: string, page = 1, pageSize = 18, q = ""): Promise<Paged<ProfileVideoItem>> {
-  return apiGet(`/api/profile/${encodeURIComponent(username)}/videos?page=${page}&pageSize=${pageSize}&q=${encodeURIComponent(q)}`);
+  return apiGet(`/profile/${encodeURIComponent(username)}/videos?page=${page}&pageSize=${pageSize}&q=${encodeURIComponent(q)}`);
 }
 
 export function getProfile(username: string) {
-  return apiGet(`/api/profile/${username}`);
+  return apiGet(`/profile/${username}`);
 }
 
 export function getMyProfile() {
-  return apiGet("/api/profile/me");
+  return apiGet("/profile/me");
 }
 
 export function updateProfile(data: {
   bio?: string;
   avatarUrl?: string;
 }) {
-  return apiPut("/api/profile/me", data);
+  return apiPut("/profile/me", data);
 }
 
 export function uploadAvatar(file: File) {
-  return apiUpload("/api/profile/avatar", file);
+  return apiUpload("/profile/avatar", file);
 }
 export function toggleFollow(username: string) {
-  return apiPost(`/api/follow/${username}`, {});
+  return apiPost(`/follow/${username}`, {});
 }
 
 export function getFollowCount(username: string) {
-  return apiGet(`/api/follow/${username}/count`);
+  return apiGet(`/follow/${username}/count`);
 }
 
 export function isFollowing(username: string) {
-  return apiGet(`/api/follow/${username}/is-following`);
+  return apiGet(`/follow/${username}/is-following`);
 }
 export function getMyNotifications() {
-  return apiGet("/api/notifications");
+  return apiGet("/notifications");
 }
 
 export function markAllNotificationsRead() {
-  return apiPost("/api/notifications/mark-read", {});
+  return apiPost("/notifications/mark-read", {});
 }
 export async function getExplore(
   page: number,
@@ -461,7 +461,7 @@ export async function getExplore(
   return await res.json();
 }
 export function getVideoCategories() {
-  return apiGet("/api/video/categories");
+  return apiGet("/video/categories");
 }
 export function getFollowers(username: string) {
   return apiGet(`/api/follow/${username}/followers`);
