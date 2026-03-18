@@ -63,7 +63,7 @@ function startStory() {
       <div className="home">
 
         <div className="home-header">
-          <h1>clipato</h1>
+          <h1>SwipClip</h1>
         </div>
 
         <div className="hero">
