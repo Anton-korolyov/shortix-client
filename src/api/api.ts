@@ -1,4 +1,4 @@
-const API = import.meta.env.VITE_API_URL;
+
 // ===========================
 // BASE REQUEST WITH REFRESH
 // ===========================
@@ -6,7 +6,7 @@ async function request(url: string, options: RequestInit = {}) {
 
   let accessToken = localStorage.getItem("accessToken");
 
-  let res = await fetch(API + url, {
+  let res = await fetch( url, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -29,7 +29,7 @@ async function request(url: string, options: RequestInit = {}) {
     }
 
     const refreshRes = await fetch(
-      API + "/auth/refresh",
+      "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -57,7 +57,7 @@ async function request(url: string, options: RequestInit = {}) {
     );
 
     // 🔁 RETRY ORIGINAL REQUEST
-    res = await fetch(API + url, {
+    res = await fetch(url, {
       ...options,
       headers: {
         "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export async function apiUpload(url: string, file: File) {
   const form = new FormData();
   form.append("file", file);
 
-  let res = await fetch(API + url, {
+  let res = await fetch( url, {
     method: "POST",
     headers: {
       Authorization: accessToken
@@ -153,7 +153,7 @@ export async function apiUpload(url: string, file: File) {
       localStorage.getItem("refreshToken");
 
     const refreshRes = await fetch(
-      API + "/auth/refresh",
+      "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -180,7 +180,7 @@ export async function apiUpload(url: string, file: File) {
     );
 
     // retry upload
-    res = await fetch(API + url, {
+    res = await fetch( url, {
       method: "POST",
       headers: {
         Authorization:
@@ -250,7 +250,7 @@ tags?.forEach((t, i) => {
   form.append(`Tags[${i}]`, t);
 });
 
-  let res = await fetch(API + "/video/upload", {
+  let res = await fetch( "/video/upload", {
     method: "POST",
     headers: {
       Authorization: accessToken
@@ -269,7 +269,7 @@ tags?.forEach((t, i) => {
       localStorage.getItem("refreshToken");
 
     const refreshRes = await fetch(
-      API + "/auth/refresh",
+      "/auth/refresh",
       {
         method: "POST",
         headers: {
@@ -296,7 +296,7 @@ tags?.forEach((t, i) => {
     );
 
     // 🔁 RETRY
-    res = await fetch(API + "/video/upload", {
+    res = await fetch( "/video/upload", {
       method: "POST",
       headers: {
         Authorization:
