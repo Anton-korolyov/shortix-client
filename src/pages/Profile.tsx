@@ -33,7 +33,7 @@ type Paged<T> = {
 export default function Profile() {
   const { username } = useParams();
   const nav = useNavigate();
-  const API = import.meta.env.VITE_API_URL;
+
   const [videos, setVideos] = useState<Video[]>([]);
   const [profile, setProfile] = useState<ProfileInfo | null>(null);
 
@@ -158,7 +158,7 @@ export default function Profile() {
               <img
                 src={
                   profile?.avatarUrl
-                    ? `${API}${profile.avatarUrl}`
+                    ? `${profile.avatarUrl}`
                     : "/avatar.png"
                 }
                 alt="avatar"

@@ -35,7 +35,7 @@ const API = import.meta.env.VITE_API_URL;
         if (p.avatarUrl) {
           setAvatarUrl(p.avatarUrl);  // ✅ сохраняем чистый путь
         setAvatarPreview(
-             `${API}${p.avatarUrl}`
+             `${p.avatarUrl}`
           );
         }
 
