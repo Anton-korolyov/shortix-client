@@ -86,10 +86,10 @@ export default function Profile() {
         let mine = false;
 
         if (username) {
-          p = await apiGet(`/api/profile/${username}`);
+          p = await apiGet(`/profile/${username}`);
           whoUsername = p.username;
         } else {
-          p = await apiGet("/api/profile/me");
+          p = await apiGet("/profile/me");
           whoUsername = p.username;
           mine = true;
         }

@@ -218,7 +218,7 @@ export function getFeed(
   following = false
 ) {
   return apiGet(
-    `/api/feed?page=${page}&following=${following}`
+    `/feed?page=${page}&following=${following}`
   );
 }
 
@@ -226,7 +226,7 @@ export function getFeed(
 // VIDEO
 // ===========================
 export function canContinue(nodeId: string) {
-  return apiGet(`/api/video/node/${nodeId}/can-continue`);
+  return apiGet(`/video/node/${nodeId}/can-continue`);
 }
 export async function uploadVideo(
   file: File,
@@ -455,7 +455,7 @@ export async function getExplore(
   if (category) params.append("category", category);
 
   const res = await fetch(
-  `${API}/api/feed/explore?${params.toString()}`
+  `${API}/feed/explore?${params.toString()}`
   );
 
   return await res.json();
@@ -464,9 +464,9 @@ export function getVideoCategories() {
   return apiGet("/video/categories");
 }
 export function getFollowers(username: string) {
-  return apiGet(`/api/follow/${username}/followers`);
+  return apiGet(`/follow/${username}/followers`);
 }
 
 export function getFollowing(username: string) {
-  return apiGet(`/api/follow/${username}/following`);
+  return apiGet(`/follow/${username}/following`);
 }
