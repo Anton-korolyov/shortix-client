@@ -188,7 +188,6 @@ export default function CreateStory() {
 
       </div>
 
-      {/* BOTTOM */}
       <div className="create-bottom">
         <button
           className="upload-button"
