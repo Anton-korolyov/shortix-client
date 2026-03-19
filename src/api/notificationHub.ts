@@ -9,7 +9,7 @@ export async function startNotificationHub() {
   if (connection) return connection;
 
   connection = new signalR.HubConnectionBuilder()
-    .withUrl(`${API}/hubs/notifications`, {
+    .withUrl(`/hubs/notifications`, {
       accessTokenFactory: () =>
         localStorage.getItem("accessToken") || ""
     })
