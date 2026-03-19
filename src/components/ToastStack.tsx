@@ -15,7 +15,7 @@ type Props = {
 
 export default function ToastStack({ items, onClose, onClick }: Props) {
   return (
-    <div className="toast-stack">
+    <div className="toast-stack">z
       {items.map(t => (
         <div
           key={t.id}

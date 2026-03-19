@@ -8,7 +8,7 @@ import {
 import "./EditProfile.css";
 
 export default function EditProfile() {
-
+const API = import.meta.env.VITE_API_URL;
   const nav = useNavigate();
 
   // username из localStorage
@@ -35,7 +35,7 @@ export default function EditProfile() {
         if (p.avatarUrl) {
           setAvatarUrl(p.avatarUrl);  // ✅ сохраняем чистый путь
         setAvatarPreview(
-             `${p.avatarUrl}`
+             `${API}${p.avatarUrl}`
           );
         }
 

@@ -44,7 +44,7 @@ export default function VideoPage() {
 
   useEffect(() => {
 
-    apiGet(`/api/video/${id}`)
+    apiGet(`/video/${id}`)
       .then(setVideo);
 
   }, [id]);
