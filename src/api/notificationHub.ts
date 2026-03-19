@@ -2,7 +2,7 @@ import * as signalR from "@microsoft/signalr";
 
 let connection: signalR.HubConnection | null = null;
 
-const API = import.meta.env.VITE_API_URL;
+
 
 export async function startNotificationHub() {
 
